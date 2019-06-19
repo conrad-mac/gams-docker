@@ -1,8 +1,8 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER "Victor Maus" maus@iiasa.ac.at
 
 # Set GAMS version 
-ENV LATEST=27.2.0
+ENV LATEST=24.8.5
 ENV GAMS_VERSION=${LATEST}
 
 # Set GAMS bit architecture, either 'x64_64' or 'x86_32'
@@ -26,4 +26,6 @@ RUN GAMS_PATH=$(dirname $(find / -name gams -type f -executable -print)) &&\
     echo "export PATH=\$PATH:$GAMS_PATH" >> ~/.bashrc &&\
     cd $GAMS_PATH &&\
     ./gamsinst -a  
+
+ENTRYPOINT ["gams"]
 
